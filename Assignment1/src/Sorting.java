@@ -25,15 +25,19 @@ public class Sorting {
 	 * @param an int array to sort
 	 * @return the sorted int array
 	 * */
+	//You want to start from a high number in the sequence and go down, idk how we decide that?
 	public static int[] shellSort(int[] arr) {
 		boolean sorted = false;
 		int n = arr.length;
 		for(int i = n; i >0 && !sorted; i--) {
+			//Count the number of passses of this loop
 			sorted = true;
 			//Declare the knuths increment sequence variable based off a variable k starting at 1
 			//Make sure it doesn't go out of bounds
-			for(int j=0,  k = j+1, sequence = (int) ((Math.pow(3, k)-1)/2); j < i-1 && sequence < i;j++) {		
+			for(int j=0,  k = j+1, sequence = (int) ((Math.pow(3, k)-1)/2); j < i-1 && sequence < i;j++) {	
+				//Note comparisons here
 				if(arr[j] > arr[j+sequence]) {
+					//Note the exchanges here
 					swap(j,j+1,arr);
 					sorted = false;
 				}
