@@ -44,14 +44,21 @@ public class HuffmanTreeNode<T> implements Comparable<T> {
 
 	@Override
 	public int compareTo(T o) {
-		HuffmanTreeNode<T> node  =(HuffmanTreeNode<T>) o;
-		if(priority > node.getPriority()) {
-			return 1;
+		if(o instanceof HuffmanTreeNode<?>) {
+			HuffmanTreeNode<?> node = (HuffmanTreeNode<?>) o;
+			if(priority > node.getPriority()) {
+				return 1;
+			}
+			else if(priority  < node.getPriority()) {
+				return -1;
+			}
+			else {return 0;}
 		}
-		else if(priority  < node.getPriority()) {
-			return -1;
-		}
-		else {return 0;}
+		return 0;
+	}
+	
+	public String toString() {
+		return "Element: " + element.toString() + "    Priority: " + priority;
 	}
 
 	

@@ -21,10 +21,13 @@ public class Tester {
 		
 		
 		
-		PriorityQueue<Integer> queue = new PriorityQueue<Integer>(9);
+		PriorityQueue<Integer> queue = new PriorityQueue<Integer>(10);
 		for(int i = 0; i < test.length; i++) {
 			queue.addElement(0, test[i]);
 		}
 		System.out.println(queue.toString());
+		queue.removeMin();
+		System.out.println(queue.toString());
+
 	}
 }

@@ -5,8 +5,8 @@ public class ArrayHeap<T> {
 	 * Fields for this class
 	 * */
 	@SuppressWarnings("unchecked")
-	private T[] heap;
-	private static int count = 0;
+	protected T[] heap;
+	private int count = 0;
 	
 	
 	public ArrayHeap(int size){
@@ -122,5 +122,10 @@ public class ArrayHeap<T> {
 	 * */
 	public String toString() {
 		return Arrays.toString(heap);
+	}
+	
+	
+	public T[] getHeap() {
+		return heap;
 	}
 }
