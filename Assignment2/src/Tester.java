@@ -28,6 +28,15 @@ public class Tester {
 		System.out.println(queue.toString());
 		queue.removeMin();
 		System.out.println(queue.toString());
+		
+		HuffmanTree tree = new HuffmanTree();
+		String testStr = "uniq str";
+		for(int i =0; i< testStr.length(); i++) {
+			tree.addNode(testStr.charAt(i)+"", i);
+		}
+		System.out.println(tree.toString());
+		tree.buildTree();
+		System.out.println(tree.toString());
 
 	}
 }

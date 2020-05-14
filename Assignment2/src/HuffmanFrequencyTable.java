@@ -5,13 +5,14 @@ public class HuffmanFrequencyTable {
 	 * Fields for the class
 	 * */
 	private String[][] table;
+	private HuffmanTree tree;
 	/**
 	 * A method that generates a new huffman frequency table based off an input string
 	 * @param a string to build the table from
 	 * */
 	public HuffmanFrequencyTable(String input) {
-		//Make this 3 later for the sake inputting the huffman codes
-		table = new String[input.length()][2];
+		tree = new HuffmanTree();
+		table = new String[input.length()][3];
 		for(int i =0; i < input.length(); i++) {
 			int occurences = getOccurrences(input, input.charAt(i));
 			//If we have a duplicate don't add, otherwise add
@@ -23,7 +24,14 @@ public class HuffmanFrequencyTable {
 				table[i][1] = "" + occurences;
 			}
 		}
-		
+		for(int i = 0; i < input.length(); i++) {
+			if(table[i][0] == null) {continue;}
+			tree.addNode(table[i][0], Integer.parseInt(table[i][1]));
+		}
+		tree.buildTree();
+		for(int i =0; i <input.length(); i++) {
+			table[i][2] = tree.buildHuffmanEncodings(tree.getRoot(),"",""+input.charAt(i));
+		}
 	}
 	
 	/**
@@ -57,7 +65,7 @@ public class HuffmanFrequencyTable {
 		returnString  +=      "--------------------------------------\n";
 		for(int i =0; i< table.length; i++) {
 			if(table[i][0] != null) {
-				returnString+= table[i][0]+"       "+table[i][1]+"\n";
+				returnString+= table[i][0]+"        "+table[i][1]+"              "+ table[i][2]+"\n";
 			}
 		}
 		returnString +=  "======================================\n";

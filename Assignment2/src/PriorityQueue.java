@@ -16,12 +16,8 @@ public class PriorityQueue<T> extends ArrayHeap<HuffmanTreeNode<T>> {
 		return node.getElement();
 	}
 	
-	/*public String toString() {
-		String output = "";
-		for(int i =0; i < getHeap().length; i++) {
-			output += getHeap()[i].toString();
-		}
-		return output;
-	}*/
+
+	
+
 
 }

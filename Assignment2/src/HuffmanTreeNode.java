@@ -6,6 +6,8 @@ public class HuffmanTreeNode<T> implements Comparable<T> {
 	 * */
 	private T element;
 	private int priority;
+	HuffmanTreeNode<T> left;
+	HuffmanTreeNode<T> right;
 	
 	
 	/**

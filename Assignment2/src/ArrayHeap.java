@@ -18,7 +18,7 @@ public class ArrayHeap<T> {
 	 *@param an element to add 
 	 * */
 	public void addElement(T element) {
-		if(count == heap.length) {
+		if(count == heap.length) { 
 			resize();
 		}
 		heap[count] = element;
@@ -62,7 +62,7 @@ public class ArrayHeap<T> {
 	 * */
 	public T removeMin() {
 		//Check for underflow
-		if(heap[0] == null) {
+		if(heap[0] == null || count <1) {
 			return null;
 		}
 		
@@ -80,24 +80,27 @@ public class ArrayHeap<T> {
 	private void heapifyRemove() {
 		T temp = heap[0];
 		int parent = 0, left = 1, right = 2;
-		while(parent < count &left <count && right<count) {
-			if(heap[left] == null && heap[right] == null) {
+		while(parent < count ) {
+			if((left >= count-1 && right >=count-1) || heap[left] == null && heap[right] == null) {
 				parent = count;
 			}
-			else if(heap[right] == null && (((Comparable)heap[parent]).compareTo(heap[left]) < 0)) {
+			else if((right > count-1 || heap[right] == null) && (((Comparable)heap[parent]).compareTo(heap[left]) < 0)) {
 				swap(parent,left);
 				parent = left;
 				left = 2*parent +1;
+				right =2*parent+2;
 			}
-			else if((((Comparable)heap[left]).compareTo(heap[right]) < 0) && (((Comparable)heap[left]).compareTo(heap[parent]) < 0)) {
+			else if((left <count-1 && right < count-1) &&(((Comparable)heap[left]).compareTo(heap[right]) < 0) && (((Comparable)heap[left]).compareTo(heap[parent]) < 0)) {
 				swap(parent,left);
 				parent = left;
 				left = 2*parent+1;
+				right = 2*parent+2;
 			}
-			else if((((Comparable)heap[right]).compareTo(heap[left]) < 0) &&  (((Comparable)heap[right]).compareTo(heap[parent]) < 0)) {
+			else if((left <count-1 && right < count-1) &&(((Comparable)heap[right]).compareTo(heap[left]) < 0) &&  (((Comparable)heap[right]).compareTo(heap[parent]) < 0)) {
 				swap(parent,right);
 				parent = right;
 				right = 2*parent+1;
+				left = 2*parent +2;
 			}
 			else {
 				parent = count;
