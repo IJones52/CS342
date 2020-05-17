@@ -38,6 +38,10 @@ public class HuffmanFrequencyTable {
 		}
 	}
 	
+	
+	/**
+	 * A method that gets the code for each letter
+	 * */
 	private String getCode(String string) {
 		for(int i =0; i< tree.getHuffmanCodes().size(); i++) {
 			if(tree.getHuffmanCodes().get(i)[0] == string) {
@@ -72,6 +76,12 @@ public class HuffmanFrequencyTable {
 		return false;
 	}
 	
+	
+	
+	/**
+	 * A method that iterates over the array table and builds the output string
+	 * @return a table with all the huffman coding information
+	 * */
 	public String toString() {
 		String returnString = "======================================\n";
 		returnString  +=      "char     frequency      code\n";
@@ -86,36 +96,38 @@ public class HuffmanFrequencyTable {
 		return returnString;
 	}
 	
-	public String getEncodeBitStream() {
-		String stream = "";
-		for(int i = 0; i < input.length(); i++) {
-			for(int j = 0; j < table.length; j++) {
-				if(table[j][0] != null && table[j][0].equals(input.charAt(i)+"")) {
-					stream += table[j][2];
-				}
-			}
-		}
-		return stream;
+	/**
+	 * A helper method to get the table
+	 * @return the huffman frequency table
+	 * */
+	public String[][] getTable(){
+		return table;
 	}
 	
-	public String decodeTree(String encoded) {
-		HuffmanTreeNode<String> root = tree.getRoot();
-		HuffmanTreeNode<String> temp = root;
-		String decoded = "";
-		for(int i = 0; i < encoded.length()+1; i++) {
-			if(temp.left == null && temp.right == null) {
-				decoded += temp.getElement();
-				temp = root;
-			
-			}
-			if(i < encoded.length() && encoded.charAt(i) == '0') {
-				temp = temp.left;
-			}
-			else {
-				temp = temp.right;
-			}
-		}
-		return decoded;
-		
+	/**
+	 * A helper method to return the input string
+	 * @return the input strintg
+	 * */
+	public String getInput() {
+		return input;
 	}
+	/**
+	 * A helper method to return the huffman tree
+	 * @return the huffman tree for the table
+	 * */
+	public HuffmanTree getTree() {
+		return tree;
+	}
+	
+	public double calculateCompressionRatio() {
+		double numerator = 0;
+		double denominator =0;
+		for(int i =0; i < table.length; i++) {
+			if(table[i][0]==null) {continue;}
+			numerator += table[i][2].length() * Integer.parseInt(table[i][1]);
+			denominator += Integer.parseInt(table[i][1]);
+		}
+		return numerator/denominator;
+	}
+
 }

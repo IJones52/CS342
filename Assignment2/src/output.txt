@@ -1,0 +1,12 @@
+======================================
+char     frequency      code
+--------------------------------------
+e        2              01
+y        1              00
+j        4              1
+======================================
+Encoded Bit Stream: 0101001111
+Total number of bits without Huffman Coding (8-bits per charachter): 56
+Total number of bits with Huffman Coding: 10
+Compression Ratio: 1.4285714285714286
+Decoded String:eeyjjjj

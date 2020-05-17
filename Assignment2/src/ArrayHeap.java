@@ -45,8 +45,8 @@ public class ArrayHeap<T> {
 	private void heapifyAdd() {
 		T temp;
 		int next = count-1;
-
-		while(next != 0 && (((Comparable)heap[next]).compareTo(heap[(next-1)/2]) < 0)) {
+		
+		while(next != 0 && (((Comparable)heap[next]).compareTo(heap[(next-1)/2]) <= 0)) {
 			temp = heap[next];
 			heap[next] = heap[(next-1)/2];
 			next = (next-1)/2;
@@ -82,7 +82,7 @@ public class ArrayHeap<T> {
 		T temp;
 		int parent = 0, left = 1, right = 2;
 		int next;
-		//System.out.println(Arrays.toString(heap) + "Starting Array\n");
+		//Select a starting location for the next
 		if ((heap[left] == null) && (heap[right] == null))
             next = count;
         else if (heap[right] == null) {
@@ -98,12 +98,15 @@ public class ArrayHeap<T> {
         	next = left;
         }
         temp = heap[parent];
-        while ((next < count) && (((Comparable)heap[next]).compareTo(temp) < 0))
+        //Swap until we can't move anymore, if it is equal, make it a child
+        while ((next < count) && (((Comparable)heap[next]).compareTo(temp) <= 0))
             {
-                heap[parent] = heap[next];
+                //Set the indices 
+        		heap[parent] = heap[next];
                 parent = next;
                 left = 2 * parent + 1;
                 right = 2 * (parent + 1);
+                //Pick next index
                 if ((left > count-1 || heap[left] == null) && (right > count -1 || heap[right] == null)) {
                     next = count;
                 }
@@ -131,7 +134,10 @@ public class ArrayHeap<T> {
 		return Arrays.toString(heap);
 	}
 	
-	
+	/**
+	 * A helper method to get he heap
+	 * @return the array which is the heap
+	 * */
 	public T[] getHeap() {
 		return heap;
 	}

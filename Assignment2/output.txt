@@ -1,0 +1,21 @@
+======================================
+char     frequency      code
+--------------------------------------
+E        1              01111
+e        8              11
+r        2              001
+i        1              01101
+         4              101
+y        1              01110
+s        2              010
+n        2              1000
+a        2              1001
+l        1              0001
+k        1              01100
+.        1              0000
+======================================
+Encoded Bit Stream: 011111100101101111011101110110101010101111100010110001110010011010001100101100110000
+Total number of bits without Huffman Coding (8-bits per charachter): 208
+Total number of bits with Huffman Coding: 84
+Compression Ratio: 2.0
+Decoded String:Eerie eyes seen near lake.

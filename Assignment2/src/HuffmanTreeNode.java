@@ -59,6 +59,10 @@ public class HuffmanTreeNode<T> implements Comparable<T> {
 		return 0;
 	}
 	
+	/**
+	 * A method that returns the value of the node in the form element + priority
+	 * @return the values in the node
+	 * */
 	public String toString() {
 		return "Element: " + element.toString() + "    Priority: " + priority;
 	}
