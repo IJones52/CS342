@@ -6,11 +6,13 @@ public class HuffmanFrequencyTable {
 	 * */
 	private String[][] table;
 	private HuffmanTree tree;
+	private String input;
 	/**
 	 * A method that generates a new huffman frequency table based off an input string
 	 * @param a string to build the table from
 	 * */
 	public HuffmanFrequencyTable(String input) {
+		this.input = input;
 		tree = new HuffmanTree();
 		table = new String[input.length()][3];
 		for(int i =0; i < input.length(); i++) {
@@ -29,11 +31,22 @@ public class HuffmanFrequencyTable {
 			tree.addNode(table[i][0], Integer.parseInt(table[i][1]));
 		}
 		tree.buildTree();
+		tree.buildHuffmanEncodings(tree.getRoot(),"");
+		
 		for(int i =0; i <input.length(); i++) {
-			table[i][2] = tree.buildHuffmanEncodings(tree.getRoot(),"",""+input.charAt(i));
+			table[i][2] = getCode(table[i][0]);
 		}
 	}
 	
+	private String getCode(String string) {
+		for(int i =0; i< tree.getHuffmanCodes().size(); i++) {
+			if(tree.getHuffmanCodes().get(i)[0] == string) {
+				return tree.getHuffmanCodes().get(i)[1];
+			}			
+		}
+		return null;
+	}
+
 	/**
 	 * A helper method for building a the table
 	 * @return the number of occurrences of a char in a string
@@ -71,5 +84,38 @@ public class HuffmanFrequencyTable {
 		returnString +=  "======================================\n";
 		//Add in the encoded bit stream, the total bits, with and without huffman and compression ratio and decoded string
 		return returnString;
+	}
+	
+	public String getEncodeBitStream() {
+		String stream = "";
+		for(int i = 0; i < input.length(); i++) {
+			for(int j = 0; j < table.length; j++) {
+				if(table[j][0] != null && table[j][0].equals(input.charAt(i)+"")) {
+					stream += table[j][2];
+				}
+			}
+		}
+		return stream;
+	}
+	
+	public String decodeTree(String encoded) {
+		HuffmanTreeNode<String> root = tree.getRoot();
+		HuffmanTreeNode<String> temp = root;
+		String decoded = "";
+		for(int i = 0; i < encoded.length()+1; i++) {
+			if(temp.left == null && temp.right == null) {
+				decoded += temp.getElement();
+				temp = root;
+			
+			}
+			if(i < encoded.length() && encoded.charAt(i) == '0') {
+				temp = temp.left;
+			}
+			else {
+				temp = temp.right;
+			}
+		}
+		return decoded;
+		
 	}
 }

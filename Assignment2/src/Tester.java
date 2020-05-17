@@ -2,15 +2,28 @@
 public class Tester {
 
 	public static void main(String[] args) {
-	/*	if(args != null) {
-			HuffmanFrequencyTable table = new HuffmanFrequencyTable(args[0]);
-			System.out.println(table.toString());
-		}*/
+		if(args.length >0) {
+			String input = args[0];
+			HuffmanFrequencyTable table = new HuffmanFrequencyTable(input);
+			System.out.println(table);
+			System.out.println("Encoded Bit Stream: " + table.getEncodeBitStream());
+			System.out.println("Total number of bits without Huffman Coding (8-bits per charachter): " + 8*input.length() );
+			System.out.println("Total number of bits with Huffman Coding: " + table.getEncodeBitStream().length());
+			double compressionRatio = (8*input.length())/table.getEncodeBitStream().length();
+			System.out.println("Compression Ratio: " + compressionRatio);
+			System.out.println("Decoded String:" + table.decodeTree(table.getEncodeBitStream()));
+		}
 		String input = "Eerie eyes seen near lake.";
 		HuffmanFrequencyTable table = new HuffmanFrequencyTable(input);
 		System.out.println(table);
+		System.out.println("Encoded Bit Stream: " + table.getEncodeBitStream());
+		System.out.println("Total number of bits without Huffman Coding (8-bits per charachter): " + 8*input.length() );
+		System.out.println("Total number of bits with Huffman Coding: " + table.getEncodeBitStream().length());
+		double compressionRatio = (8*input.length())/table.getEncodeBitStream().length();
+		System.out.println("Compression Ratio: " + compressionRatio);
+		System.out.println("Decoded String:" + table.decodeTree(table.getEncodeBitStream()));
 		
-		int[] test = {52,125, 3456,12,32,35,856,13,2};
+		/*int[] test = {124,1325,21,3,1,12,2};
 		ArrayHeap<Integer> heap = new ArrayHeap<Integer>(10);
 		for(int i=0; i < test.length;i++) {
 			heap.addElement(test[i]);
@@ -20,10 +33,10 @@ public class Tester {
 		System.out.println(heap.toString());
 		
 		
-		
-		PriorityQueue<Integer> queue = new PriorityQueue<Integer>(10);
+	
+		PriorityQueue<String> queue = new PriorityQueue<String>(10);
 		for(int i = 0; i < test.length; i++) {
-			queue.addElement(0, test[i]);
+			queue.addElement("-", test[i]);
 		}
 		System.out.println(queue.toString());
 		queue.removeMin();
@@ -36,7 +49,7 @@ public class Tester {
 		}
 		System.out.println(tree.toString());
 		tree.buildTree();
-		System.out.println(tree.toString());
+		System.out.println(tree.toString());*/
 
 	}
 }

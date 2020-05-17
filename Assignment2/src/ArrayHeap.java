@@ -45,14 +45,14 @@ public class ArrayHeap<T> {
 	private void heapifyAdd() {
 		T temp;
 		int next = count-1;
-		
+
 		while(next != 0 && (((Comparable)heap[next]).compareTo(heap[(next-1)/2]) < 0)) {
 			temp = heap[next];
 			heap[next] = heap[(next-1)/2];
 			next = (next-1)/2;
 			heap[next]= temp;
-					
 		}
+
 		    
 	}
 	
@@ -68,8 +68,8 @@ public class ArrayHeap<T> {
 		
 		T minElement = heap[0];
 		heap[0] = heap[count-1];
-		heap[count-1] = null;
 		heapifyRemove();
+		heap[count-1]=null;
 		count --;
 		return minElement;                                                                                                
 	}
@@ -77,46 +77,50 @@ public class ArrayHeap<T> {
 	/**
 	 * A helper method that reorders the heap after the smallest element is removed
 	 * */
+	
 	private void heapifyRemove() {
-		T temp = heap[0];
+		T temp;
 		int parent = 0, left = 1, right = 2;
-		while(parent < count ) {
-			if((left >= count-1 && right >=count-1) || heap[left] == null && heap[right] == null) {
-				parent = count;
-			}
-			else if((right > count-1 || heap[right] == null) && (((Comparable)heap[parent]).compareTo(heap[left]) < 0)) {
-				swap(parent,left);
-				parent = left;
-				left = 2*parent +1;
-				right =2*parent+2;
-			}
-			else if((left <count-1 && right < count-1) &&(((Comparable)heap[left]).compareTo(heap[right]) < 0) && (((Comparable)heap[left]).compareTo(heap[parent]) < 0)) {
-				swap(parent,left);
-				parent = left;
-				left = 2*parent+1;
-				right = 2*parent+2;
-			}
-			else if((left <count-1 && right < count-1) &&(((Comparable)heap[right]).compareTo(heap[left]) < 0) &&  (((Comparable)heap[right]).compareTo(heap[parent]) < 0)) {
-				swap(parent,right);
-				parent = right;
-				right = 2*parent+1;
-				left = 2*parent +2;
-			}
-			else {
-				parent = count;
-			}
-		}
+		int next;
+		//System.out.println(Arrays.toString(heap) + "Starting Array\n");
+		if ((heap[left] == null) && (heap[right] == null))
+            next = count;
+        else if (heap[right] == null) {
+            next = left;
+        }
+        else if (((Comparable)heap[left]).compareTo(heap[right]) < 0) {
+            next = left;
+        }
+        else if(((Comparable)heap[right]).compareTo(heap[left]) < 0){
+            next = right;
+        }
+        else {
+        	next = left;
+        }
+        temp = heap[parent];
+        while ((next < count) && (((Comparable)heap[next]).compareTo(temp) < 0))
+            {
+                heap[parent] = heap[next];
+                parent = next;
+                left = 2 * parent + 1;
+                right = 2 * (parent + 1);
+                if ((left > count-1 || heap[left] == null) && (right > count -1 || heap[right] == null)) {
+                    next = count;
+                }
+                else if (right > count-1 || heap[right] == null) {
+                    next = left;
+                }
+                else if (((Comparable)heap[left]).compareTo(heap[right]) < 0) {
+                    next = left;
+                }
+                else {
+                    next = right;
+                }
+            }
+            heap[parent] = temp;
 		
 	}
-	
-	/**
-	 * A method that swaps positions of elements in the heap
-	 * */
-	private void swap(int pos1, int pos2) {
-		T temp = heap[pos1];
-		heap[pos1] = heap[pos2];
-		heap[pos2] = temp;
-	}
+
 	
 	
 	/**
