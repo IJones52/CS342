@@ -1,0 +1,10 @@
+listen: tinsel, silent, 
+boat: No anagrams detected
+shoe: hose, 
+lion: olin, loin, 
+loin: olin, lion, 
+st1: 1st, 
+qiewuro: No anagrams detected
+ssrab: brass, 
+oflg: golf, flog, 
+equiye: No anagrams detected

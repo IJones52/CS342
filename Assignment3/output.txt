@@ -1,0 +1,5 @@
+listen: tinsel, silent, 
+boat: No anagrams detected
+shoe: hose, 
+lion: olin, loin, 
+st1: 1st, 
