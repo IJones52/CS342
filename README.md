@@ -4,7 +4,7 @@
 
 #### Relevant assignment descriptions atatched
 
-#### [Assign_1.pdf](https://github.com/IJones52/CS342/files/6198922/Assign_1.pdf)\
+#### [Assign_1.pdf](https://github.com/IJones52/CS342/files/6198922/Assign_1.pdf)
 
 #### [ProgAssign2.pdf](https://github.com/IJones52/CS342/files/6198923/ProgAssign2.pdf)
 
