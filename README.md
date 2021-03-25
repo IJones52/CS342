@@ -1,4 +1,4 @@
-# CS342
+# Data-Structures
 
 ### My programming assignments from TCSS 342 Data Structures
 
